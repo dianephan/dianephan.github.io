@@ -1,0 +1,117 @@
+img {
+    width: 200px;
+}
+
+ul {
+    text-align: left;
+    list-style-position: inside;
+}
+
+body {
+    font-size: .9em;
+    text-align: center;
+    font-family: "Verdana";
+    background-image: url(images/grid.gif);
+    background-repeat: repeat;
+    background-size: 450px; 
+}
+
+/*left column*/
+header{
+    position: fixed; 
+    /*stays in place when I scroll*/
+    height: 100%;
+    text-align: center;
+    background: #74bcc3;
+    color: black;
+    border-image-width: auto;
+    margin-left: 30px; 
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+div.midcol {
+    position: fixed;
+/*  position allows col to stay in place when I scroll*/
+    height: 100%;
+    /*text-align: center;
+    color: darkgray;*/ 
+    margin-left: 550px; 
+    margin-right: 880px;
+    max-width: 400px;
+    /*max-width will HOPEFULLY prevent the middle column from interfering with the right column */
+}
+
+div.rightcol{
+    height: 100%;
+    text-align: left;
+/*    color: darkgray;
+    border-image-width: auto;
+   // margin-right: -800px; */
+    margin-left: 970px; 
+    margin-right: 20px;
+    max-width: 400px; 
+
+}
+
+header .title {
+    font-size: 2em;
+    padding: 10px;
+}
+
+/*sidebar navigation*/
+nav a {
+    text-decoration: none;
+    color: #E0D6E9;
+    display: block;
+}
+/*can have diff navs. tested this out */
+
+/*xexample of a pseudoclass used to specify a state of a selected element*/
+nav a:hover {
+    color: #74bcc3;
+    background: white;
+    transition-property: color, background;
+    transition-duration: .3s;
+}
+
+main {
+/*
+    margin-left: 400px;
+    margin-right: 600px;
+*/
+/*
+    background-image: url(images/grid.gif);
+    background-repeat: repeat;
+    background-size: 450px; 
+*/
+}
+
+
+/*select all elements with class "section-title" */
+/*the line beneath the section title */
+.section-title { 
+    border-bottom: 2px solid #74bcc3;
+}
+
+h2, h3 {
+    color: #294042;
+}
+
+div.gallery {
+/*    margin-left: 200px;*/
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+/*
+div.gallery:hover {
+    border: 1px solid #777;
+}
+*/
+
+div.gallery img {
+    margin-top: center;
+    width: 180px;
+    height: auto;
+}
