@@ -3,6 +3,180 @@
 python -m SimpleHTTPServer
 -->
 
+
+<script type="text/javascript">
+    // <![CDATA[
+    var colour="#aae3fc";
+    var sparkles=120;
+    
+    /****************************
+    *  Tinkerbell Magic Sparkle *
+    * (c) 2005 mf2fm web-design *
+    *  http://www.mf2fm.com/rv  *
+    * DON'T EDIT BELOW THIS BOX *
+    ****************************/
+    var x=ox=400;
+    var y=oy=300;
+    var swide=800;
+    var shigh=600;
+    var sleft=sdown=0;
+    var tiny=new Array();
+    var star=new Array();
+    var starv=new Array();
+    var starx=new Array();
+    var stary=new Array();
+    var tinyx=new Array();
+    var tinyy=new Array();
+    var tinyv=new Array();
+    
+    window.onload=function() { if (document.getElementById) {
+      var i, rats, rlef, rdow;
+      for (var i=0; i<sparkles; i++) {
+        var rats=createDiv(3, 3);
+        rats.style.visibility="hidden";
+        document.body.appendChild(tiny[i]=rats);
+        starv[i]=0;
+        tinyv[i]=0;
+        var rats=createDiv(5, 5);
+        rats.style.backgroundColor="transparent";
+        rats.style.visibility="hidden";
+        var rlef=createDiv(1, 5);
+        var rdow=createDiv(5, 1);
+        rats.appendChild(rlef);
+        rats.appendChild(rdow);
+        rlef.style.top="2px";
+        rlef.style.left="0px";
+        rdow.style.top="0px";
+        rdow.style.left="2px";
+        document.body.appendChild(star[i]=rats);
+      }
+      set_width();
+      sparkle();
+    }}
+    
+    function sparkle() {
+      var c;
+      if (x!=ox || y!=oy) {
+        ox=x;
+        oy=y;
+        for (c=0; c<sparkles; c++) if (!starv[c]) {
+          star[c].style.left=(starx[c]=x)+"px";
+          star[c].style.top=(stary[c]=y)+"px";
+          star[c].style.clip="rect(0px, 5px, 5px, 0px)";
+          star[c].style.visibility="visible";
+          starv[c]=50;
+          break;
+        }
+      }
+      for (c=0; c<sparkles; c++) {
+        if (starv[c]) update_star(c);
+        if (tinyv[c]) update_tiny(c);
+      }
+      setTimeout("sparkle()", 40);
+    }
+    
+    function update_star(i) {
+      if (--starv[i]==25) star[i].style.clip="rect(1px, 4px, 4px, 1px)";
+      if (starv[i]) {
+        stary[i]+=1+Math.random()*3;
+        if (stary[i]<shigh+sdown) {
+          star[i].style.top=stary[i]+"px";
+          starx[i]+=(i%5-2)/5;
+          star[i].style.left=starx[i]+"px";
+        }
+        else {
+          star[i].style.visibility="hidden";
+          starv[i]=0;
+          return;
+        }
+      }
+      else {
+        tinyv[i]=50;
+        tiny[i].style.top=(tinyy[i]=stary[i])+"px";
+        tiny[i].style.left=(tinyx[i]=starx[i])+"px";
+        tiny[i].style.width="2px";
+        tiny[i].style.height="2px";
+        star[i].style.visibility="hidden";
+        tiny[i].style.visibility="visible"
+      }
+    }
+    
+    function update_tiny(i) {
+      if (--tinyv[i]==25) {
+        tiny[i].style.width="1px";
+        tiny[i].style.height="1px";
+      }
+      if (tinyv[i]) {
+        tinyy[i]+=1+Math.random()*3;
+        if (tinyy[i]<shigh+sdown) {
+          tiny[i].style.top=tinyy[i]+"px";
+          tinyx[i]+=(i%5-2)/5;
+          tiny[i].style.left=tinyx[i]+"px";
+        }
+        else {
+          tiny[i].style.visibility="hidden";
+          tinyv[i]=0;
+          return;
+        }
+      }
+      else tiny[i].style.visibility="hidden";
+    }
+    
+    document.onmousemove=mouse;
+    function mouse(e) {
+      set_scroll();
+      y=(e)?e.pageY:event.y+sdown;
+      x=(e)?e.pageX:event.x+sleft;
+    }
+    
+    function set_scroll() {
+      if (typeof(self.pageYOffset)=="number") {
+        sdown=self.pageYOffset;
+        sleft=self.pageXOffset;
+      }
+      else if (document.body.scrollTop || document.body.scrollLeft) {
+        sdown=document.body.scrollTop;
+        sleft=document.body.scrollLeft;
+      }
+      else if (document.documentElement && (document.documentElement.scrollTop || document.documentElement.scrollLeft)) {
+        sleft=document.documentElement.scrollLeft;
+        sdown=document.documentElement.scrollTop;
+      }
+      else {
+        sdown=0;
+        sleft=0;
+      }
+    }
+    
+    window.onresize=set_width;
+    function set_width() {
+      if (typeof(self.innerWidth)=="number") {
+        swide=self.innerWidth;
+        shigh=self.innerHeight;
+      }
+      else if (document.documentElement && document.documentElement.clientWidth) {
+        swide=document.documentElement.clientWidth;
+        shigh=document.documentElement.clientHeight;
+      }
+      else if (document.body.clientWidth) {
+        swide=document.body.clientWidth;
+        shigh=document.body.clientHeight;
+      }
+    }
+    
+    function createDiv(height, width) {
+      var div=document.createElement("div");
+      div.style.position="absolute";
+      div.style.height=height+"px";
+      div.style.width=width+"px";
+      div.style.overflow="hidden";
+      div.style.backgroundColor=colour;
+      return (div);
+    }
+    // ]]>
+    </script>
+
+
 <html>
 <head> <!-- contains data about data -->
     <meta charset="utf-8">
@@ -13,9 +187,19 @@ python -m SimpleHTTPServer
     <header>
             <h2 class = "title">Hello, World.</h2>
             <h2 class = "greeting">My name is Diane Phan</h2>
+            <img src="images/ribbon.png"style="width:250px;height:20px;">
+            <br>
                 <img src="https://c1.staticflickr.com/9/8774/28049946854_2740c5b767_b.jpg">
-                    <p style="color: honeydew">I am seeking ways to express my creativity through code.</p>
-
+            <br>
+            <img src="images/ribbon.png"style="width:250px;height:20px;">
+            <br>    
+                <p style="color: honeydew">
+                    I love <a href="disney.html">Disney</a>, electronic music, and cute desserts!
+                    <br><br>
+                    Please contact me if you are interested
+                    <br> 
+                    in hearing from my references at 
+                    <br>Tesla, Workday, or iD Tech Camps!
             <nav>
                 <!-- <a href="#about">About Me</a> -->
                 <br>
@@ -23,9 +207,10 @@ python -m SimpleHTTPServer
                 <a href="https://github.com/dianephan">Github</a>
                 <a href="https://www.linkedin.com/in/diane-phan-203723b8">LinkedIn</a>	    
                 <a href="https://dianephan.github.io/Diane_Phan_Resume.pdf">Resume</a>
-                <a href="disney.html">Experiences with Disney</a>
                 <!-- <a href="achievements.html">Achievements</a> -->
+                <br>
             </nav>
+
     </header>
 
 
@@ -39,10 +224,16 @@ python -m SimpleHTTPServer
                 and understanding of data to improve performance in projects within the 
                 entertainment industry.
             </p>
+            <h2 class = "section-title"> </h2>
             <br>
+            <p>I received some awards as a woman in tech!</p>
+            <ul>
+                <li>1 of 10 women receiving the  <a href= "https://www.linkedin.com/posts/activity-6572713468271697920-Cbsd/">Windows Insider Program (WIP) Award</a> for GHC19</li>
+                <li>Recipient of the <a href= "https://www.linkedin.com/posts/activity-6449353842109874176-r3V1/">AnitaB.org GHC18</a> Award</li>
+                <li>Attended GDC18 with <a href= "https://www.linkedin.com/posts/activity-6381172846265274368-V75P/">Xbox's Women in Gaming</a> Award</li>
+            </ul>
             <br>
             <h2 class = "section-title"> </h2>
-            <p>henlo!!</p> 
             <p>I love receiving emails and meeting new people! Feel free to email me at:</p>
             <p style="font-size: 125%;">dianephan12@gmail.com </p>
             
@@ -84,11 +275,19 @@ python -m SimpleHTTPServer
             </ul>
             <br><br>
             
-            <h3>Some Personal Projects and Portfolios</h3>
+            <h3>Some Personal Projects and Portfolios About Myself</h3>
             <ul>
+                <li>Disney Pressed Penny Locator: <a href="https://github.com/dianephan/pressedpenny">WIP Github</a></li>
                 <li>My Javascript Art <a href="artportfolio/art.html">Portfolio</a></li>
                 <li><a href="https://hackthegirl.wordpress.com/">"Hack the Girl"</a> A blog to support females in tech.</li>
+                <li>"Diverse Skillsets at a Hackathon" on <a href= "https://rewritingthecode.org/diverse-skillsets-at-a-hackathon/">RTC's Blog</a></li>
+                <li>"Networking with Industry Professionals at a Hackathon" on <a href= "https://medium.com/@ucsbhacks/hacking-the-network-with-industry-professionals-9bc0fd0e1db6">SB Hack's Blog</a></li>
+                <li>Girl Scout Gold Award Recipient 2015: <a href= "https://www.facebook.com/TAKgoldawardmural/">Check out my project!</a></li>
+
             </ul>    
+
+
+
 
 
 
