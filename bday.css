@@ -1,0 +1,115 @@
+img {
+  width: 200px;
+}
+
+ul {
+  text-align: left;
+  list-style-position: inside;
+}
+
+body {
+  font-size: .9em;
+  text-align: center;
+  font-family: "Verdana";
+  background-image: url(images/grid.gif);
+  background-repeat: repeat;
+  background-size: 450px; 
+}
+
+/*left column*/
+header{
+  position: fixed; 
+  /*stays in place when I scroll*/
+  height: 100%;
+  text-align: center;
+  background: #9dc2a7;
+  color: black;
+  border-image-width: auto;
+  margin-left: 30px; 
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+div.rightcol{
+  height: 100%;
+  text-align: left;
+/*    color: darkgray;
+  border-image-width: auto;
+ // margin-right: -800px; */
+  margin-left: 600px; 
+  /* margin-right: 200px; */
+  max-width: 800px; 
+
+}
+
+header .title {
+  font-size: 2em;
+  padding: 10px;
+}
+
+/*sidebar navigation*/
+nav a {
+  text-decoration: none;
+  color: #E0D6E9;
+  display: block;
+}
+/*can have diff navs. tested this out */
+
+/*xexample of a pseudoclass used to specify a state of a selected element*/
+nav a:hover {
+  color: #74bcc3;
+  background: white;
+  transition-property: color, background;
+  transition-duration: .3s;
+}
+
+/*select all elements with class "section-title" */
+/*the line beneath the section title */
+.section-title { 
+  border-bottom: 2px solid #74bcc3;
+}
+
+h2, h3 {
+  color: #294042;
+}
+
+div.gallery {
+/*    margin-left: 200px;*/
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+div.gallery img {
+  margin-top: center;
+  width: 180px;
+  height: auto;
+}
+
+/* https://css-tricks.com/making-css-animations-feel-natural/ */
+.stage {
+  border-bottom: 3px solid #444;
+  display: flex;
+  height: 330px;
+  width: 100%;
+}
+
+.cake {
+  align-self: flex-end;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  background-image: url(images/cake.gif);
+  background-repeat: no-repeat;
+  height: 200px;
+  margin: 0 auto 0 auto;
+  transform-origin: bottom;
+  width: 200px;
+}
+.bounce-2 {
+  animation-name: bounce-2;
+  animation-timing-function: ease;
+}
+@keyframes bounce-2 {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-100px); }
+  100% { transform: translateY(0); }
+}
