@@ -87,10 +87,10 @@ div.gallery img {
 
 /* https://css-tricks.com/making-css-animations-feel-natural/ */
 .stage {
-  border-bottom: 3px solid #444;
+  border-bottom: 3px;
   display: flex;
   height: 330px;
-  width: 100%;
+  width: 50%;
 }
 
 .cake {
@@ -104,12 +104,55 @@ div.gallery img {
   transform-origin: bottom;
   width: 200px;
 }
+
 .bounce-2 {
   animation-name: bounce-2;
   animation-timing-function: ease;
 }
 @keyframes bounce-2 {
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(-100px); }
+  /* from {
+    transform: translateX(0%);
+  }
+
+  to {
+    transform: translateX(100%);
+ 
+  }   */
+  0%   { transform: translateX(0), translateY(0); }
+  50%  { transform: translateY(-700px); }
   100% { transform: translateY(0); }
+}
+.stage3 {
+  /* border-bottom: 3px; */
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+.cake3 {
+  /* align-self: flex-end; */
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  background-image: url(images/cake.gif);
+  background-repeat: no-repeat;
+  height: 300px;
+  margin: 0 auto 0 auto;
+  transform-origin: bottom;
+  width: 200px;
+}
+
+.bounce-3 {
+  animation-name: bounce-3;
+  animation-timing-function: ease;
+}
+@keyframes bounce-3 {
+  0%   { transform: translateX(0, 5)}
+  50%  { transform: translateX(-80); }
+  100% { transform: translateX(0); }
+}
+
+/* hello kitty */
+.topright{
+  position: absolute;
+  top: 0px;
+  right: 0px;
 }

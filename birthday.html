@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <!-- 
 PLEASE DON'T INSPECT ELEMENT OH MY GOD WHAT ARE YOU DOING!!!!!
-I'M SO EMBARRASSED
+I'M SO EMBARRASSED I'M TERRIBLE AT WEB DEV
 
 hahahahaHAHHAHAHAHAHAHAHHAHAHAHAHAHHAHAHAHAHAHHAHAHAHAHAHHAHAHAHAHAHHAHAHAHAHAHHAHAHAHAHAHHAHAHAHAHAHHAHAHAHAHAHHAHAHAHAHAHHA
 HAHAHAHAHHAHAHAHAHAHHAHAHAHAHAHHAHAHAHAHAHHAHAHAHAHAHHA
 HAHAHAHAHHAHAHAHAHAHHAHAHAHAHAHHA
 
 -->
-
 
 <script type="text/javascript">
   // <![CDATA[
@@ -38,6 +37,25 @@ HAHAHAHAHHAHAHAHAHAHHAHAHAHAHAHHA
   var cakeball = document.createElement("img");
   cakeball.src = "images/cake.gif";
 
+  var canvas = document.querySelector("canvas");
+ 
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  var l = canvas.getContext('2d');
+ 
+ // x and y are the co-ordinates of the circle
+
+ // vx and vy are the respective speeds
+
+ var x = Math.floor(Math.random() * innerWidth);
+ var y = Math.floor(Math.random() * innerHeight);
+ var vx = Math.floor(Math.random() * 2);
+ var vy = Math.floor(Math.random() * 4);
+ var radius = 20;
+
+
+
+
   window.onload=function() { if (document.getElementById) {
     var i, rats, rlef, rdow;
     for (var i=0; i<sparkles; i++) {
@@ -61,9 +79,9 @@ HAHAHAHAHHAHAHAHAHAHHAHAHAHAHAHHA
     }
     set_width();
     sparkle();
-    titleMarquee();
-
     //add JS funcs here
+    titleMarquee();
+    move();
 
   }}
   
@@ -81,6 +99,42 @@ HAHAHAHAHHAHAHAHAHAHHAHAHAHAHAHHA
       }
     }
   }
+
+
+
+  // This function will do the animation
+  function move() {
+      requestAnimationFrame(move);
+
+      // It clears the specified pixels within
+      // the given rectangle
+      l.clearRect(0, 0, innerWidth, innerHeight);
+
+      // Creating a circle
+      l.beginPath();
+      l.strokeStyle = "black";
+      l.arc(x, y, radius, 0, Math.PI * 2, false);
+      l.stroke();
+
+      // Conditions sso that the ball bounces
+      // from the edges
+      if (radius + x > innerWidth)
+          vx = 0 - vx;
+
+      if (x - radius < 0)
+          vx = 0 - vx;
+
+      if (y + radius > innerHeight)
+          vy = 0 - vy;
+
+      if (y - radius < 0)
+          vy = 0 - vy;
+
+      x = x + vx;
+      y = y + vy;
+  }
+
+
 
 
 
@@ -212,7 +266,7 @@ HAHAHAHAHHAHAHAHAHAHHAHAHAHAHAHHA
   <!-- <script src="sketch.js"></script> -->
     <meta charset="utf-8">
     <link rel="stylesheet" href="bday.css" />    
-      <title> IT MY BIRTHDAY B$#@& !!!!!!!!!!!!!!</title>
+      <title> IT MY BIRTHDAY B$#@& !!!!!!!!!!!!!! </title>
       <link rel="icon" type="image/x-icon" href="/images/cupcake.gif">
 
       
@@ -224,7 +278,6 @@ HAHAHAHAHHAHAHAHAHAHHAHAHAHAHAHHA
        setTimeout("titleMarquee()", 450);
        }
       </script>
-      
 </head>
     <header>
         <h2 class = "greeting">["HIP", "HIP"]</h2>
@@ -239,7 +292,8 @@ HAHAHAHAHHAHAHAHAHAHHAHAHAHAHAHHA
         
         <br>    
           <p style="color: honeydew">
-            I'M TOO LAZY TO MAKE THIS LOOK NICE SORRRYYYY
+            <br>
+            best viewed on desktop because i am LAZY
             <br>
             but check back and maybe i'll change it up randomly lol!!
         <nav>
@@ -247,15 +301,18 @@ HAHAHAHAHHAHAHAHAHAHHAHAHAHAHAHHA
             <br>
         </nav>
 
-        <div class="stage">
-          <div class="cake bounce-2"></div>
+      <div class="stage">
+        <div class="cake bounce-2"></div>
       </div>
       
 
     </header>
     <main> 
+      <div class="topright">
+        <img src="images/holidayHK.gif" alt="holiday hello kitty">
+      </div>
       <div class="rightcol">
-      <p> ❄️ happy best month of the year, everyone! ❄️
+      <!-- <p> ❄️ happy best month of the year, everyone! ❄️
         <br><br>
         for my birthday/holiday season this year, I really want to challenge anyone reading this to write one line of code for me! 
         <br><br>
@@ -273,11 +330,11 @@ HAHAHAHAHHAHAHAHAHAHHAHAHAHAHAHHA
         yall got 2 weeks to learn something for me 
         <br><br>
         in return, for you all, and FOR MYSELF, I'm going to dig a special project out of my grave of side projects – we all know that's going to be an accomplishment on it's own amirite 
-      </p>
+      </p> -->
       <br>
       <h3>Learning Resources</h3>
       <ul>
-        <li><a href="https://www.twilio.com/blog/author/dphan">Twilio blog duh lol</a></li>
+        <li><a href="https://www.twilio.com/blog/author/dphan">Twilio blog duh lol</a> --> for a challenge!!</li>
         <li><a href="https://www.w3schools.com/">w3schools</a> the goat --> I only use this site for HTML/CSS and JavaScript</li>
         <li><a href="https://www.geeksforgeeks.org/c-plus-plus/">Geeks for Geeks</a> helped me so much in college and interviews (C++, Python, etc)</li>      
         <li><a href="mailto:dianephan12@gmail.com">ME</a> I'M HAPPY TO HELP</li>
@@ -298,7 +355,11 @@ HAHAHAHAHHAHAHAHAHAHHAHAHAHAHAHHA
         <br><br>
         If you haven't written your first line of code yet, now is the time 8)
         <br>happy holidays and happy coding 🎄
+        <!-- <div class="stage3">
+          <div class="cake3 bounce-3"></div>
+        </div> -->
 
+        </div>
         <br><br>
         <br><br>
         <br><br>
