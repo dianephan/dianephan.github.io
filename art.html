@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<!-- 
+python -m SimpleHTTPServer
+-->
+
+<script type="text/javascript">
+    // <![CDATA[
+    var colour="#aae3fc";
+    var sparkles=120;
+    
+    /****************************
+    *  Tinkerbell Magic Sparkle *
+    * (c) 2005 mf2fm web-design *
+    *  http://www.mf2fm.com/rv  *
+    * DON'T EDIT BELOW THIS BOX *
+    ****************************/
+    var x=ox=400;
+    var y=oy=300;
+    var swide=800;
+    var shigh=600;
+    var sleft=sdown=0;
+    var tiny=new Array();
+    var star=new Array();
+    var starv=new Array();
+    var starx=new Array();
+    var stary=new Array();
+    var tinyx=new Array();
+    var tinyy=new Array();
+    var tinyv=new Array();
+    
+    window.onload=function() { if (document.getElementById) {
+      var i, rats, rlef, rdow;
+      for (var i=0; i<sparkles; i++) {
+        var rats=createDiv(3, 3);
+        rats.style.visibility="hidden";
+        document.body.appendChild(tiny[i]=rats);
+        starv[i]=0;
+        tinyv[i]=0;
+        var rats=createDiv(5, 5);
+        rats.style.backgroundColor="transparent";
+        rats.style.visibility="hidden";
+        var rlef=createDiv(1, 5);
+        var rdow=createDiv(5, 1);
+        rats.appendChild(rlef);
+        rats.appendChild(rdow);
+        rlef.style.top="2px";
+        rlef.style.left="0px";
+        rdow.style.top="0px";
+        rdow.style.left="2px";
+        document.body.appendChild(star[i]=rats);
+      }
+      set_width();
+      sparkle();
+    }}
+    
+    function sparkle() {
+      var c;
+      if (x!=ox || y!=oy) {
+        ox=x;
+        oy=y;
+        for (c=0; c<sparkles; c++) if (!starv[c]) {
+          star[c].style.left=(starx[c]=x)+"px";
+          star[c].style.top=(stary[c]=y)+"px";
+          star[c].style.clip="rect(0px, 5px, 5px, 0px)";
+          star[c].style.visibility="visible";
+          starv[c]=50;
+          break;
+        }
+      }
+      for (c=0; c<sparkles; c++) {
+        if (starv[c]) update_star(c);
+        if (tinyv[c]) update_tiny(c);
+      }
+      setTimeout("sparkle()", 40);
+    }
+    
+    function update_star(i) {
+      if (--starv[i]==25) star[i].style.clip="rect(1px, 4px, 4px, 1px)";
+      if (starv[i]) {
+        stary[i]+=1+Math.random()*3;
+        if (stary[i]<shigh+sdown) {
+          star[i].style.top=stary[i]+"px";
+          starx[i]+=(i%5-2)/5;
+          star[i].style.left=starx[i]+"px";
+        }
+        else {
+          star[i].style.visibility="hidden";
+          starv[i]=0;
+          return;
+        }
+      }
+      else {
+        tinyv[i]=50;
+        tiny[i].style.top=(tinyy[i]=stary[i])+"px";
+        tiny[i].style.left=(tinyx[i]=starx[i])+"px";
+        tiny[i].style.width="2px";
+        tiny[i].style.height="2px";
+        star[i].style.visibility="hidden";
+        tiny[i].style.visibility="visible"
+      }
+    }
+    
+    function update_tiny(i) {
+      if (--tinyv[i]==25) {
+        tiny[i].style.width="1px";
+        tiny[i].style.height="1px";
+      }
+      if (tinyv[i]) {
+        tinyy[i]+=1+Math.random()*3;
+        if (tinyy[i]<shigh+sdown) {
+          tiny[i].style.top=tinyy[i]+"px";
+          tinyx[i]+=(i%5-2)/5;
+          tiny[i].style.left=tinyx[i]+"px";
+        }
+        else {
+          tiny[i].style.visibility="hidden";
+          tinyv[i]=0;
+          return;
+        }
+      }
+      else tiny[i].style.visibility="hidden";
+    }
+    
+    document.onmousemove=mouse;
+    function mouse(e) {
+      set_scroll();
+      y=(e)?e.pageY:event.y+sdown;
+      x=(e)?e.pageX:event.x+sleft;
+    }
+    
+    function set_scroll() {
+      if (typeof(self.pageYOffset)=="number") {
+        sdown=self.pageYOffset;
+        sleft=self.pageXOffset;
+      }
+      else if (document.body.scrollTop || document.body.scrollLeft) {
+        sdown=document.body.scrollTop;
+        sleft=document.body.scrollLeft;
+      }
+      else if (document.documentElement && (document.documentElement.scrollTop || document.documentElement.scrollLeft)) {
+        sleft=document.documentElement.scrollLeft;
+        sdown=document.documentElement.scrollTop;
+      }
+      else {
+        sdown=0;
+        sleft=0;
+      }
+    }
+    
+    window.onresize=set_width;
+    function set_width() {
+      if (typeof(self.innerWidth)=="number") {
+        swide=self.innerWidth;
+        shigh=self.innerHeight;
+      }
+      else if (document.documentElement && document.documentElement.clientWidth) {
+        swide=document.documentElement.clientWidth;
+        shigh=document.documentElement.clientHeight;
+      }
+      else if (document.body.clientWidth) {
+        swide=document.body.clientWidth;
+        shigh=document.body.clientHeight;
+      }
+    }
+    
+    function createDiv(height, width) {
+      var div=document.createElement("div");
+      div.style.position="absolute";
+      div.style.height=height+"px";
+      div.style.width=width+"px";
+      div.style.overflow="hidden";
+      div.style.backgroundColor=colour;
+      return (div);
+    }
+    // ]]>
+    </script>
+    
+
+
+
+<html>
+<head> <!-- contains data about data -->
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="disneycss.css" />    
+</head>
+
+<body> 
+    <header>
+            <h2 class = "title">Hello, World.</h2>
+            <h2 class = "greeting"></h2>
+            <img src="images/ribbon.png"style="width:250px;height:20px;">
+            <br>
+                <img src="images/IMG_6432.JPG">
+            <br>
+                <img src="images/ribbon.png"style="width:250px;height:20px;">
+            <br>
+
+                    <p style="color: honeydew">
+                    Using code and technology as a creative medium.</p>
+                    <br>
+                    <br>
+
+                    </p>
+
+            <nav>
+                <!-- <a href="#about">About Me</a> -->
+                <br>
+                <a href="index.html">Home</a>
+                <a href="https://github.com/dianephan">Github</a>
+                <a href="https://www.linkedin.com/in/diane-phan-203723b8">LinkedIn</a>	    
+                <a href="https://dianephan.github.io/Diane_Phan_Resume.pdf">Resume</a>
+
+                <!-- <a href="personal.html">Personal Interests</a> -->
+                <!-- <a href="achievements.html">Achievements</a> -->
+            </nav>
+    </header>
+
+
+    <main> 
+        <!-- <section id = "aboutme"  remove the hyperlink to aboutme --> 
+        <div class="rightcol">            
+            <h2 class = "section-title">Let's build the future of entertainment and art.</h2>
+            <p>Growing up, I learned to appreciate the importance of storytelling and giving back to the organizations that helped mold me into the person I am today. 
+                Games and animation have a reputation of engaging the world with an immersive experience and that has inspired me to become an engineer with art tools under my belt. 
+                <br>
+                <br>
+                
+                <br>
+                <img src="images/ribbon.png"style="width:850px;height:30px;">
+                <br>
+                <h2>Look at the Sky Webapp</h2>
+                <img src="images/portergif.gif"style="width:100%">
+
+                <p>Crowdsourced birthday present for one of my favorite musicians, Porter Robinson. The webapp was written in Python, Javascript, and Flask. 
+                <br>
+                <br>The project received recognition from Porter Robinson himself, as well as 
+                <a href="tinyurl.com/diane-youredm" >Your EDM</a>, an EDM centered blog with 354,000 monthly visits.
+                <br>
+                <br>
+                <a href="http://lookatthesky.dianephan.me/">View the deployed site on AWS</a>
+                <br>
+                <a href="https://github.com/dianephan/look-at-the-sky">View the GitHub repo </a>
+                <br>
+                </p>
+
+                <img src="images/ribbon.png"style="width:850px;height:30px;">
+                <h2>Digital Art with Code Porfolio</h2>
+                <img src="images/digitalart.png"style="width:100%">
+                <p>Produced detail-oriented digital artwork using JavaScript, HTML, CSS, and the p5 JavaScript library for people to interact with their computers and web browsers. </p>
+                <a href="tinyurl.com/y7vlmphg">View the portfolio pieces</a>
+                <br>
+                <br>
+
+                <img src="images/ribbon.png"style="width:850px;height:30px;">
+                <h2>(WIP) All Eyes on Us</h2>
+                <img src="images/aeou.png"style="width:100%">
+                <p>Developing an educational game teaching about social media surveillance written as an interactive fiction for the Youth Justice Board nonprofit in New York City. Working with 4 other students to build and deploy the game from scratch.
+                <br>Using HTML, CSS, and Sugarcube Twine to build out the game within a 7 week timeframe. 
+                </p>
+                <a href="https://github.com/dianephan/alleyesonus-demo">View the GitHub repo</a>
+                <br>
+                <br>
+                <img src="images/ribbon.png"style="width:850px;height:30px;">
+                <h2>Meeting Inspirations</h2>
+                <br>
+                <img src="images/crx.jpeg">
+                <p>I love making my own cosplays and attending conventions that celebrate passions for anime, art, and entertainment! At 
+                    <a href="https://www.crunchyroll.com/anime-news/2018/07/28/domee-shi-director-of-disney-pixars-bao-joins-lineup-at-crunchyroll-expo">Crunchy Roll Expo 2018</a>
+                    , I had the opportunity to meet Domee Shi and listen to her story behind directing Bao. I admire her persistence for working at Pixar, and how she represents Asian women in the entertainment industry. Bao's emotional story and Shi's inspiring story has given me courage to pursue my dreams as an Asian in tech!</p>
+                <br>
+                <img src="images/ribbon.png"style="width:850px;height:30px;">
+                <br>
+                <br>
+                </p>
+                <br>
+                <h2 class = "section-title"> </h2>
+                <p>Let's talk more about the intersection of art and technology. Email me at </p>
+                <p style="font-size: 125%;">dianephan12@gmail.com </p>
+            
+        </div>
+       
+    </main>
+    
+</body>
+</html>
